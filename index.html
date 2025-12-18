@@ -5,23 +5,24 @@
   <title>Christmas Vibe Quiz</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://use.typekit.net/tui0fks.css">
 </head>
 
 <body>
 
-<div class="quiz" id="quiz">
-  <h1>Choose Images & Get a Christmas Song</h1>
-  <h2 id="question"></h2>
-  <div class="grid" id="answers"></div>
-</div>
+  <div class="quiz-container" id="quiz">
+    <h1>Take A Quiz & Get Your Christmas Song!</h1>
+    <h2 id="question-text"></h2>
+    <div class="options-grid" id="options-grid"></div>
+  </div>
 
-<div class="result hidden" id="result">
-  <h1>Your Christmas Song Is:</h1>
-  <h2 id="song"></h2>
-  <p id="description"></p>
-  <button onclick="restart()">Take Again</button>
-</div>
+  <div class="result hidden" id="result">
+    <h1>Your Christmas Song Is:</h1>
+    <h2 id="song-title"></h2>
+    <p id="song-description"></p>
+    <button onclick="restartQuiz()">Take Again</button>
+  </div>
 
-<script src="script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

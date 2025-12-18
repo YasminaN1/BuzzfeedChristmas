@@ -1,74 +1,74 @@
 const questions = [
   {
-    text: "Pick a winter aesthetic",
+    text: "What Energy Does Your House Give Off?",
     options: [
-      { img: "https://images.unsplash.com/photo-1608889175638-d9b1f30e6d1b", type: "cozy" },
-      { img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750", type: "classic" },
-      { img: "https://images.unsplash.com/photo-1543946603-0f3a9cdb7d0b", type: "fun" },
-      { img: "https://images.unsplash.com/photo-1544025162-d76694265947", type: "romantic" }
+      { img: "imgs/mutedhouse.png", type: "cozy" },
+      { img: "imgs/festivehouse.png", type: "classic" },
+      { img: "imgs/eleganthouse.png", type: "fun" },
+      { img: "imgs/cozycabinhouse.png", type: "romantic" }
     ]
   },
   {
-    text: "Choose a holiday activity",
+    text: "How Decorated Is Your Living Room for Christmas?",
     options: [
-      { img: "https://images.unsplash.com/photo-1607346256330-dee7af15f7c5", type: "fun" },
-      { img: "https://images.unsplash.com/photo-1519682337058-a94d519337bc", type: "cozy" },
-      { img: "https://images.unsplash.com/photo-1513883049090-d0b7439799bf", type: "classic" },
-      { img: "https://images.unsplash.com/photo-1546549039-9a20b4b7c7d5", type: "romantic" }
+      { img: "imgs/unfestivelivingroom.png", type: "fun" },
+      { img: "imgs/tackylivingroom.png", type: "cozy" },
+      { img: "imgs/sterilelivingroom.png", type: "classic" },
+      { img: "imgs/cozylivingroom.png", type: "romantic" }
     ]
   },
   {
-    text: "Pick a Christmas vibe",
+    text: "What Does Your Kitchen Look Like During Christmas?",
     options: [
-      { img: "https://images.unsplash.com/photo-1543258103-a62bdc069871", type: "classic" },
-      { img: "https://images.unsplash.com/photo-1519681393784-d120267933ba", type: "cozy" },
-      { img: "https://images.unsplash.com/photo-1517423440428-a5a00ad493e8", type: "fun" },
-      { img: "https://images.unsplash.com/photo-1512412046876-f386342eddb3", type: "romantic" }
+      { img: "imgs/whitekitchen.png", type: "classic" },
+      { img: "imgs/warmkitchen.png", type: "cozy" },
+      { img: "imgs/messykitchen.png", type: "fun" },
+      { img: "imgs/nospirit.png", type: "romantic" }
     ]
   },
   {
-    text: "Pick a holiday setting",
+    text: "How Decorated Is Your Bedroom During Christmas?",
     options: [
-      { img: "https://images.unsplash.com/photo-1549880338-65ddcdfd017b", type: "cozy" },
-      { img: "https://images.unsplash.com/photo-1519682337058-a94d519337bc", type: "classic" },
-      { img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131", type: "fun" },
-      { img: "https://images.unsplash.com/photo-1513883049090-d0b7439799bf", type: "romantic" }
+      { img: "imgs/whitebed.png", type: "cozy" },
+      { img: "imgs/undecoratedbed.png", type: "classic" },
+      { img: "imgs/pinkbed.png", type: "fun" },
+      { img: "imgs/festivebed.png", type: "romantic" }
     ]
   },
   {
-    text: "Choose a holiday mood",
+    text: "What Does Your Tree Look Like?",
     options: [
-      { img: "https://images.unsplash.com/photo-1482192596544-9eb780fc7f66", type: "romantic" },
-      { img: "https://images.unsplash.com/photo-1483683804023-6ccdb62f86ef", type: "cozy" },
-      { img: "https://images.unsplash.com/photo-1485288734756-0b31a0a31d95", type: "classic" },
-      { img: "https://images.unsplash.com/photo-1512917774080-9991f1c4c750", type: "fun" }
+      { img: "imgs/realtree.png", type: "romantic" },
+      { img: "imgs/grandtree.png", type: "cozy" },
+      { img: "imgs/faketree.png", type: "classic" },
+      { img: "imgs/babytree.png", type: "fun" }
     ]
   },
   {
-    text: "Pick a holiday treat",
+    text: "What Does Your Bathroom Look Like?",
     options: [
-      { img: "https://images.unsplash.com/photo-1606312619854-6e9b1a7e3b6c", type: "cozy" },
-      { img: "https://images.unsplash.com/photo-1546549039-9a20b4b7c7d5", type: "fun" },
-      { img: "https://images.unsplash.com/photo-1519681393784-d120267933ba", type: "classic" },
-      { img: "https://images.unsplash.com/photo-1512412046876-f386342eddb3", type: "romantic" }
+      { img: "imgs/warmbathroom.png", type: "cozy" },
+      { img: "imgs/tackybathroom.png", type: "fun" },
+      { img: "imgs/sterilebathroom.png", type: "classic" },
+      { img: "imgs/elegantbathroom.png", type: "romantic" }
     ]
   },
   {
-    text: "Choose your holiday night",
+    text: "What Does Your Christmas Table Look Like?",
     options: [
-      { img: "https://images.unsplash.com/photo-1513883049090-d0b7439799bf", type: "romantic" },
-      { img: "https://images.unsplash.com/photo-1517423440428-a5a00ad493e8", type: "fun" },
-      { img: "https://images.unsplash.com/photo-1519682337058-a94d519337bc", type: "classic" },
-      { img: "https://images.unsplash.com/photo-1483683804023-6ccdb62f86ef", type: "cozy" }
+      { img: "imgs/takeout.png", type: "romantic" },
+      { img: "imgs/superfeast.png", type: "fun" },
+      { img: "imgs/superelegantfeast.png", type: "classic" },
+      { img: "imgs/simplefeast.png", type: "cozy" }
     ]
   },
   {
-    text: "Pick a Christmas morning",
+    text: "What’s Your Holiday Lighting Vibe?",
     options: [
-      { img: "https://images.unsplash.com/photo-1543258103-a62bdc069871", type: "classic" },
-      { img: "https://images.unsplash.com/photo-1519681393784-d120267933ba", type: "cozy" },
-      { img: "https://images.unsplash.com/photo-1518791841217-8f162f1e1131", type: "fun" },
-      { img: "https://images.unsplash.com/photo-1482192596544-9eb780fc7f66", type: "romantic" }
+      { img: "imgs/tackylighting.png", type: "classic" },
+      { img: "imgs/nolighting.png", type: "cozy" },
+      { img: "imgs/insanelighting.png", type: "fun" },
+      { img: "imgs/elegantlighting.png", type: "romantic" }
     ]
   }
 ];
@@ -78,46 +78,41 @@ let answers = [];
 
 const questionText = document.getElementById("question-text");
 const optionsGrid = document.getElementById("options-grid");
-const nextBtn = document.getElementById("next-btn");
 
 function loadQuestion() {
-  nextBtn.disabled = true;
-  optionsGrid.innerHTML = "";
   questionText.textContent = questions[currentQuestion].text;
+  optionsGrid.innerHTML = "";
 
   questions[currentQuestion].options.forEach(option => {
     const div = document.createElement("div");
     div.className = "option";
     div.innerHTML = `<img src="${option.img}" alt="">`;
-    div.onclick = () => selectOption(div, option.type);
+    div.onclick = () => selectOption(option.type);
     optionsGrid.appendChild(div);
   });
 }
 
-function selectOption(element, type) {
-  document.querySelectorAll(".option").forEach(o => o.classList.remove("selected"));
-  element.classList.add("selected");
-  answers[currentQuestion] = type;
-  nextBtn.disabled = false;
-}
-
-nextBtn.onclick = () => {
+function selectOption(type) {
+  answers.push(type);
   currentQuestion++;
+
   if (currentQuestion < questions.length) {
     loadQuestion();
   } else {
     showResult();
   }
-};
+}
 
 function showResult() {
-  document.querySelector(".quiz-container").classList.add("hidden");
+  document.getElementById("quiz").classList.add("hidden");
   document.getElementById("result").classList.remove("hidden");
 
   const counts = {};
   answers.forEach(a => counts[a] = (counts[a] || 0) + 1);
 
-  const vibe = Object.keys(counts).reduce((a, b) => counts[a] > counts[b] ? a : b);
+  const vibe = Object.keys(counts).reduce((a, b) =>
+    counts[a] > counts[b] ? a : b
+  );
 
   const songs = {
     cozy: ["Have Yourself a Merry Little Christmas", "Soft, warm, and nostalgic"],
@@ -134,7 +129,7 @@ function restartQuiz() {
   currentQuestion = 0;
   answers = [];
   document.getElementById("result").classList.add("hidden");
-  document.querySelector(".quiz-container").classList.remove("hidden");
+  document.getElementById("quiz").classList.remove("hidden");
   loadQuestion();
 }
 
