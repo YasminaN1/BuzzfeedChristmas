@@ -1,3 +1,9 @@
+/* ===============================
+   CHRISTMAS SONG QUIZ – FULL SCRIPT
+   Updated with new song results
+   =============================== */
+
+/* ---------- QUESTIONS ---------- */
 const questions = [
   {
     text: "What Energy Does Your House Give Off?",
@@ -73,12 +79,44 @@ const questions = [
   }
 ];
 
+/* ---------- SONG RESULTS ---------- */
+const songResults = {
+  cozy: {
+    title: "It's Beginning To Look A Lot Like Christmas",
+    description: "Soft, warm, and nostalgic",
+    cover: "imgs/cozy-album.png"
+  },
+  classic: {
+    title: "White Christmas",
+    description: "Timeless and traditional",
+    cover: "imgs/classic-album.png"
+  },
+  fun: {
+    title: "Rockin’ Around the Christmas Tree",
+    description: "Energetic and festive",
+    cover: "imgs/fun-album.png"
+  },
+  romantic: {
+    title: "All I Want For Christmas Is You",
+    description: "Emotional and dreamy",
+    cover: "imgs/romantic-album.png"
+  }
+};
+
+/* ---------- STATE ---------- */
 let currentQuestion = 0;
 let answers = [];
 
+/* ---------- ELEMENTS ---------- */
+const quizEl = document.getElementById("quiz");
+const resultEl = document.getElementById("result");
 const questionText = document.getElementById("question-text");
 const optionsGrid = document.getElementById("options-grid");
+const songTitleEl = document.getElementById("song-title");
+const songDescEl = document.getElementById("song-description");
+const coverEl = document.getElementById("cover");
 
+/* ---------- LOAD QUESTION ---------- */
 function loadQuestion() {
   questionText.textContent = questions[currentQuestion].text;
   optionsGrid.innerHTML = "";
@@ -87,11 +125,12 @@ function loadQuestion() {
     const div = document.createElement("div");
     div.className = "option";
     div.innerHTML = `<img src="${option.img}" alt="">`;
-    div.onclick = () => selectOption(option.type);
+    div.addEventListener("click", () => selectOption(option.type));
     optionsGrid.appendChild(div);
   });
 }
 
+/* ---------- SELECT ANSWER ---------- */
 function selectOption(type) {
   answers.push(type);
   currentQuestion++;
@@ -103,34 +142,44 @@ function selectOption(type) {
   }
 }
 
+/* ---------- SHOW RESULT ---------- */
 function showResult() {
-  document.getElementById("quiz").classList.add("hidden");
-  document.getElementById("result").classList.remove("hidden");
+  quizEl.classList.add("hidden");
+  resultEl.classList.remove("hidden");
 
+  // Count answers
   const counts = {};
-  answers.forEach(a => counts[a] = (counts[a] || 0) + 1);
+  answers.forEach(type => {
+    counts[type] = (counts[type] || 0) + 1;
+  });
 
-  const vibe = Object.keys(counts).reduce((a, b) =>
-    counts[a] > counts[b] ? a : b
+  // Determine winning category
+  const winningType = Object.keys(counts).reduce((a, b) =>
+    counts[a] >= counts[b] ? a : b
   );
 
-  const songs = {
-    cozy: ["Have Yourself a Merry Little Christmas", "Soft, warm, and nostalgic"],
-    classic: ["White Christmas", "Timeless and traditional"],
-    fun: ["Rockin’ Around the Christmas Tree", "Energetic and festive"],
-    romantic: ["Last Christmas", "Emotional and dreamy"]
-  };
+  const song = songResults[winningType];
 
-  document.getElementById("song-title").textContent = songs[vibe][0];
-  document.getElementById("song-description").textContent = songs[vibe][1];
+  // Display result
+  songTitleEl.textContent = song.title;
+  songDescEl.textContent = song.description;
+
+  // Set album cover on vinyl
+  coverEl.style.backgroundImage = `url(${song.cover})`;
 }
 
+/* ---------- RESTART QUIZ ---------- */
 function restartQuiz() {
   currentQuestion = 0;
   answers = [];
-  document.getElementById("result").classList.add("hidden");
-  document.getElementById("quiz").classList.remove("hidden");
+
+  coverEl.style.backgroundImage = "";
+
+  resultEl.classList.add("hidden");
+  quizEl.classList.remove("hidden");
+
   loadQuestion();
 }
 
+/* ---------- INIT ---------- */
 loadQuestion();
