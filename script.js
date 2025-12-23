@@ -80,22 +80,18 @@ const questions = [
 const songResults = {
   cozy: {
     title: "It's Beginning To Look A Lot Like Christmas",
-    description: "Soft, warm, and nostalgic",
     cover: "imgs/cozy-album.png"
   },
   classic: {
     title: "White Christmas",
-    description: "Timeless and traditional",
     cover: "imgs/classic-album.png"
   },
   fun: {
     title: "Rockin’ Around the Christmas Tree",
-    description: "Energetic and festive",
     cover: "imgs/fun-album.png"
   },
   romantic: {
     title: "All I Want For Christmas Is You",
-    description: "Emotional and dreamy",
     cover: "imgs/romantic-album.png"
   }
 };

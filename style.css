@@ -25,6 +25,7 @@ body {
   margin: auto;
 }
 
+
 h1 {
   font-size: 3.2rem;
   font-family: "adorn-engraved", sans-serif;
@@ -108,14 +109,14 @@ h2 {
 	text-decoration: none;
 	color: #FFF;
 	text-shadow: 0 1px 2px rgba(0,0,0,0.75);
-	background: #5e0d0c;
+	background: #0c0d5e;
 	outline: none;
 	border-radius: 15px;
-	border: 1px solid #4c0300;
+	border: 1px solid #00054c;
 	box-shadow:
 		inset 1px 1px 0px rgba(255,255,255,0.25), /* highlight */
-		inset 0 0 6px #a23227, /* inner glow */
-		inset 0 80px 80px -40px #ac3223, /* gradient */
+		inset 0 0 6px #2729a2, /* inner glow */
+		inset 0 80px 80px -40px #2328ac, /* gradient */
 		1px 1px 3px rgba(0,0,0,0.75); /* shadow */
 		
 	position: relative;
@@ -140,12 +141,12 @@ h2 {
 	
 }
 .button:hover {
-	background: #a61715;
+	background: #112fb5;
 	text-shadow: 0 1px 2px rgba(0,0,0,0.75), 0 0 40px #FFF;
 	box-shadow:
 		inset 1px 1px 0px rgba(255,255,255,0.25), /* highlight */
-		inset 0 0 6px #da3b2c, /* inner glow */
-		inset 0 80px 80px -40px #dd4330, /* gradient */
+		inset 0 0 6px #2c92da, /* inner glow */
+		inset 0 80px 80px -40px #3092dd, /* gradient */
 		1px 1px 3px rgba(0,0,0,0.75); /* shadow */
 		
 }
@@ -155,8 +156,8 @@ h2 {
 .button:active {
 	box-shadow:
 		inset 1px 1px 0px rgba(255,255,255,0.25), /* highlight */
-		inset 0 0 6px #da3b2c, /* inner glow */
-		inset 0 80px 80px -40px #dd4330, /* gradient */
+		inset 0 0 6px #2c83da, /* inner glow */
+		inset 0 80px 80px -40px #3081dd, /* gradient */
 		0px 1px 0px rgba(255,255,255,0.25); /* shadow */
 		
 	-webkit-transition: 50ms linear;
@@ -175,7 +176,19 @@ h2 {
 
 #song-title {
   color: white;
+  text-shadow: 0 0 5px #00aaff, 0 0 10px #008cff, 0 0 20px #00a2ff, 0 0 40px #0091ff, 0 0 80px #007bff;
+  animation: glow 1.5s infinite alternate;
 }
+
+@keyframes glow {
+  0% {
+    text-shadow: 0 0 5px #0040ff, 0 0 10px #0037ff, 0 0 20px #0044ff, 0 0 40px #003cff, 0 0 80px #0044ff;
+  }
+  100% {
+    text-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff, 0 0 40px #00d4ff, 0 0 80px #00d4ff, 0 0 160px #00d4ff;
+  }
+}
+
 
 
 .bg {
@@ -203,12 +216,27 @@ h2 {
   display: none;
 }
 
+/* Wrap vinyl and button */
+.result-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* center horizontally */
+  margin-top: 0;      /* remove extra space so wrap sits close to result text */
+}
+
+/* Ensure button is positioned immediately under vinyl */
+.result-actions .button {
+  margin-top: 50px;      /* tiny distance under vinyl */
+}
+
+
 /* ========== VINYL ALBUM CSS (ADDED) ========== */
 #wrap {
   position: relative;
   width: 100%;
-  height: 60vh;
-  margin-top: 40px;
+  height: auto; /* let the wrap size to content so button sits close */
+  margin-top: 80px; /* larger gap above album to spread out title and cover */
+  padding-bottom: 6px; /* reduce bottom padding so button is closer */
 }
 
 #album {
@@ -244,7 +272,7 @@ h2 {
 
 #vinyl {
   position: absolute;
-  top: 5%;
+  top: 0%; /* pull vinyl up to reduce space below */
   left: 0;
   z-index: 1;
   width: 90%;
