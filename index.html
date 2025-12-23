@@ -25,7 +25,7 @@
     <h1>Your Christmas Song Is:</h1>
     <h2 id="song-title"></h2>
     <p id="song-description"></p>
-    <button onclick="restartQuiz()">Take Again</button>
+    <button class="button" onclick="restartQuiz()">Take Again</button>
 
     <!-- Vinyl Album -->
     <div id="wrap">
@@ -42,6 +42,8 @@
 
     <!-- Hidden YouTube iframe -->
     <div id="youtube-player" style="display:none;"></div>
+    <!-- Result audio (hidden) -->
+    <audio id="result-audio" preload="auto"></audio>
   </div>
 
   <!-- Scripts -->

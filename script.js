@@ -1,7 +1,4 @@
-/* ===============================
-   CHRISTMAS SONG QUIZ – FULL SCRIPT
-   Updated with new song results
-   =============================== */
+
 
 /* ---------- QUESTIONS ---------- */
 const questions = [
@@ -103,6 +100,14 @@ const songResults = {
   }
 };
 
+/* ---------- AUDIO MAP ---------- */
+const audioMap = {
+  cozy: "audio/its-beginning.mp3",
+  classic: "audio/white-christmas.mp3",
+  fun: "audio/rockin-around.mp3",
+  romantic: "audio/mariah-all-i-want.mp3"
+};
+
 /* ---------- STATE ---------- */
 let currentQuestion = 0;
 let answers = [];
@@ -115,6 +120,8 @@ const optionsGrid = document.getElementById("options-grid");
 const songTitleEl = document.getElementById("song-title");
 const songDescEl = document.getElementById("song-description");
 const coverEl = document.getElementById("cover");
+const audioEl = document.getElementById("result-audio");
+const vinyl = document.getElementById("vinyl");
 
 /* ---------- LOAD QUESTION ---------- */
 function loadQuestion() {
@@ -130,7 +137,7 @@ function loadQuestion() {
   });
 }
 
-/* ---------- SELECT ANSWER ---------- */
+/* ---------- SELECT OPTION ---------- */
 function selectOption(type) {
   answers.push(type);
   currentQuestion++;
@@ -138,34 +145,53 @@ function selectOption(type) {
   if (currentQuestion < questions.length) {
     loadQuestion();
   } else {
-    showResult();
+    showResult(true);
   }
 }
 
 /* ---------- SHOW RESULT ---------- */
-function showResult() {
+function showResult(autoplay = false) {
   quizEl.classList.add("hidden");
   resultEl.classList.remove("hidden");
 
-  // Count answers
   const counts = {};
-  answers.forEach(type => {
-    counts[type] = (counts[type] || 0) + 1;
-  });
+  answers.forEach(t => counts[t] = (counts[t] || 0) + 1);
 
-  // Determine winning category
   const winningType = Object.keys(counts).reduce((a, b) =>
     counts[a] >= counts[b] ? a : b
   );
 
   const song = songResults[winningType];
 
-  // Display result
   songTitleEl.textContent = song.title;
   songDescEl.textContent = song.description;
-
-  // Set album cover on vinyl
   coverEl.style.backgroundImage = `url(${song.cover})`;
+
+  if (audioEl && audioMap[winningType]) {
+    audioEl.src = audioMap[winningType];
+    audioEl.currentTime = 0;
+
+    if (autoplay) {
+      audioEl.play().then(() => {
+        vinyl.classList.add("playing");
+      }).catch(err => {
+        console.warn("Autoplay blocked:", err);
+      });
+    }
+  }
+}
+
+/* ---------- VINYL CLICK PLAY / PAUSE ---------- */
+function playSong() {
+  if (!audioEl.src) return;
+
+  if (audioEl.paused) {
+    audioEl.play();
+    vinyl.classList.add("playing");
+  } else {
+    audioEl.pause();
+    vinyl.classList.remove("playing");
+  }
 }
 
 /* ---------- RESTART QUIZ ---------- */
@@ -173,6 +199,13 @@ function restartQuiz() {
   currentQuestion = 0;
   answers = [];
 
+  if (audioEl) {
+    audioEl.pause();
+    audioEl.currentTime = 0;
+    audioEl.src = "";
+  }
+
+  vinyl.classList.remove("playing");
   coverEl.style.backgroundImage = "";
 
   resultEl.classList.add("hidden");
