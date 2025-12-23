@@ -1,9 +1,14 @@
-
-
-/* ---------- QUESTIONS ---------- */
+/*
+   QUESTIONS ARRAY
+   This is an ARRAY of OBJECTS.
+   Each object represents one quiz question.
+*/
 const questions = [
   {
+    // Question text (string)
     text: "What Energy Does Your House Give Off?",
+
+    // OPTIONS is an array of objects
     options: [
       { img: "imgs/mutedhouse.png", type: "cozy" },
       { img: "imgs/festivehouse.png", type: "classic" },
@@ -76,7 +81,11 @@ const questions = [
   }
 ];
 
-/* ---------- SONG RESULTS ---------- */
+/* 
+   SONG RESULTS OBJECT
+   This is an OBJECT used like a lookup table.
+   Each key matches a quiz result type.
+*/
 const songResults = {
   cozy: {
     title: "It's Beginning To Look A Lot Like Christmas",
@@ -96,7 +105,10 @@ const songResults = {
   }
 };
 
-/* ---------- AUDIO MAP ---------- */
+/* 
+   AUDIO MAP OBJECT
+   Maps result types to audio file paths
+*/
 const audioMap = {
   cozy: "audio/its-beginning.mp3",
   classic: "audio/white-christmas.mp3",
@@ -104,11 +116,17 @@ const audioMap = {
   romantic: "audio/mariah-all-i-want.mp3"
 };
 
-/* ---------- STATE ---------- */
-let currentQuestion = 0;
-let answers = [];
+/*
+   STATE VARIABLES
+   These track quiz progress
+*/
+let currentQuestion = 0; // number (index)
+let answers = [];        // array to store user choices
 
-/* ---------- ELEMENTS ---------- */
+/* 
+   DOM ELEMENTS
+   These connect JS to HTML elements
+*/
 const quizEl = document.getElementById("quiz");
 const resultEl = document.getElementById("result");
 const questionText = document.getElementById("question-text");
@@ -119,54 +137,84 @@ const coverEl = document.getElementById("cover");
 const audioEl = document.getElementById("result-audio");
 const vinyl = document.getElementById("vinyl");
 
-/* ---------- LOAD QUESTION ---------- */
+/* 
+   LOAD QUESTION FUNCTION
+   Function: displays current question + options
+*/
 function loadQuestion() {
+  // Set question text
   questionText.textContent = questions[currentQuestion].text;
+
+  // Clear old options
   optionsGrid.innerHTML = "";
 
+  // forEach LOOP: runs once per option
   questions[currentQuestion].options.forEach(option => {
     const div = document.createElement("div");
     div.className = "option";
+
+    // Insert image into option
     div.innerHTML = `<img src="${option.img}" alt="">`;
+
+    // EVENT LISTENER: waits for click
     div.addEventListener("click", () => selectOption(option.type));
+
+    // Add option to the page
     optionsGrid.appendChild(div);
   });
 }
 
-/* ---------- SELECT OPTION ---------- */
+/* 
+   SELECT OPTION FUNCTION
+   Runs when a user clicks an option
+*/
 function selectOption(type) {
+  // Store selected type in array
   answers.push(type);
+
+  // Move to next question
   currentQuestion++;
 
+  // CONDITIONAL
   if (currentQuestion < questions.length) {
-    loadQuestion();
+    loadQuestion(); // keep going
   } else {
-    showResult(true);
+    showResult(true); // end quiz
   }
 }
 
-/* ---------- SHOW RESULT ---------- */
+/* 
+   SHOW RESULT FUNCTION
+   Calculates most common answer
+*/
 function showResult(autoplay = false) {
+  // Hide quiz, show results
   quizEl.classList.add("hidden");
   resultEl.classList.remove("hidden");
 
+  // OBJECT to count answers
   const counts = {};
+
+  // LOOP: count each answer type
   answers.forEach(t => counts[t] = (counts[t] || 0) + 1);
 
+  // REDUCE: find most common answer
   const winningType = Object.keys(counts).reduce((a, b) =>
     counts[a] >= counts[b] ? a : b
   );
 
   const song = songResults[winningType];
 
+  // Update result content
   songTitleEl.textContent = song.title;
-  songDescEl.textContent = song.description;
   coverEl.style.backgroundImage = `url(${song.cover})`;
 
+  // AUDIO setup
   if (audioEl && audioMap[winningType]) {
     audioEl.src = audioMap[winningType];
     audioEl.currentTime = 0;
 
+    // Optional autoplay
     if (autoplay) {
       audioEl.play().then(() => {
         vinyl.classList.add("playing");
@@ -177,7 +225,10 @@ function showResult(autoplay = false) {
   }
 }
 
-/* ---------- VINYL CLICK PLAY / PAUSE ---------- */
+/* 
+   PLAY / PAUSE FUNCTION
+   Toggles music when vinyl is clicked
+*/
 function playSong() {
   if (!audioEl.src) return;
 
@@ -190,11 +241,15 @@ function playSong() {
   }
 }
 
-/* ---------- RESTART QUIZ ---------- */
+/* 
+   RESTART QUIZ FUNCTION
+   Resets everything to start over
+*/
 function restartQuiz() {
   currentQuestion = 0;
   answers = [];
 
+  // Stop and reset audio
   if (audioEl) {
     audioEl.pause();
     audioEl.currentTime = 0;
@@ -204,11 +259,15 @@ function restartQuiz() {
   vinyl.classList.remove("playing");
   coverEl.style.backgroundImage = "";
 
+  // Show quiz again
   resultEl.classList.add("hidden");
   quizEl.classList.remove("hidden");
 
   loadQuestion();
 }
 
-/* ---------- INIT ---------- */
+/* 
+   INIT
+   Runs once when page loads
+*/
 loadQuestion();
